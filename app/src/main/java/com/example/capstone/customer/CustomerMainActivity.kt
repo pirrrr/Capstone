@@ -1,4 +1,4 @@
-package com.example.capstone.owner
+package com.example.capstone.customer
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -10,11 +10,11 @@ import com.example.capstone.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class OwnerMainActivity : AppCompatActivity() {
+class CustomerMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.owner_activity_main)
+        setContentView(R.layout.customer_activity_main)
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -25,10 +25,10 @@ class OwnerMainActivity : AppCompatActivity() {
 
 
 
-        val fragmenthome = OwnerFragmentHome()
-        val fragmentrequest = OwnerFragmentRequest()
-        val fragmenttrack = OwnerFragmentTrack()
-        val fragmenthistory = OwnerFragmentHistory()
+        val fragmenthome = CustomerFragmentHome()
+        val fragmentrequest = CustomerFragmentRequest()
+        val fragmenttrack = CustomerFragmentTrack()
+        val fragmenthistory = CustomerFragmentHistory()
 
 
         setCurrentFragment(fragmenthome)
