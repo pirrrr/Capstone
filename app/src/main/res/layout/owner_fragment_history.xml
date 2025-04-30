@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".owner.MainActivity">
+    tools:context=".owner.OwnerMainActivity">
 
     <TextView
-        android:id="@+id/homeFragment"
+        android:id="@+id/historyFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Homepage"
+        android:text="History"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
