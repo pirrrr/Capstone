@@ -50,7 +50,6 @@
         app:layout_constraintBaseline_toBaselineOf="@id/tvPickupLabel"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Delivery -->
     <TextView
         android:id="@+id/tvDeliveryLabel"
         android:text="Delivery"
@@ -68,7 +67,6 @@
         app:layout_constraintBaseline_toBaselineOf="@id/tvDeliveryLabel"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Feeds Conversion Label -->
     <TextView
         android:id="@+id/tvFeedsConversionLabel"
         android:layout_width="wrap_content"
@@ -78,9 +76,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDeliveryLabel" />
 
-    <!-- 1 kilo -->
-
-    <!-- 1/2 kilo -->
     <TextView
         android:id="@+id/tvFeedsRate1"
         android:layout_width="wrap_content"
