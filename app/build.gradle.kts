@@ -48,7 +48,17 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    implementation (libs.converter.gson)
+    implementation (libs.retrofit2.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp)
+
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }
