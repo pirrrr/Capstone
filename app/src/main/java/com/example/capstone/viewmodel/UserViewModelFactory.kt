@@ -1,15 +1,15 @@
 package com.example.capstone.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstone.repository.UserRepository
 
-class UserViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.Factory {
+
+class UserViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
-            return UserViewModel(userRepository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        val repo = UserRepository(context)  // ✅ pass context correctly
+        return UserViewModel(repo) as T
     }
 }

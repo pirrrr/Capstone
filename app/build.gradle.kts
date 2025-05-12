@@ -53,6 +53,7 @@ dependencies {
     implementation (libs.retrofit2.retrofit)
     implementation(libs.logging.interceptor)
     implementation(libs.okhttp)
+    implementation (libs.kotlinx.coroutines.android)
 
 
 

@@ -15,17 +15,35 @@ object ApiClient {
         setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
-    private val httpClient = OkHttpClient.Builder()
-        .addInterceptor(loggingInterceptor)
-        .build()
 
-    val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(httpClient)
-        .build()
 
-    val apiService: ApiService = retrofit.create(ApiService::class.java)
+    fun getApiService(tokenProvider: () -> String?): ApiService {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(tokenProvider)) // Use lambda
+            .addInterceptor(loggingInterceptor)
+            .build()
 
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create(ApiService::class.java)
+    }
+
+
+    // Fallback/default service without token
+    val apiService: ApiService by lazy {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create(ApiService::class.java)
+    }
 }
 

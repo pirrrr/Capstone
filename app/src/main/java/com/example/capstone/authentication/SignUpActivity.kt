@@ -37,8 +37,11 @@ class SignUpActivity : AppCompatActivity() {
         }
 
 
-        val factory = UserViewModelFactory(UserRepository())
-        userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+        userViewModel = ViewModelProvider(
+            this,
+            UserViewModelFactory(applicationContext) // 👈 Pass Context here
+        )[UserViewModel::class.java]
+
 
 
         val firstNameField = findViewById<EditText>(R.id.firstnameET)

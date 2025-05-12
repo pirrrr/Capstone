@@ -34,8 +34,8 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     }
 
     // Get the logged-in user's profile
-    fun getProfile(token: String) = liveData {
-        val response: Response<User> = userRepository.getProfile(token)
+    fun getProfile() = liveData {
+        val response: Response<User> = userRepository.getProfile()
         if (response.isSuccessful) {
             emit(response.body())  // Emit profile response
         } else {
@@ -44,8 +44,8 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     }
 
     // Logout the user
-    fun logout(token: String) = liveData {
-        val response: Response<Map<String, String>> = userRepository.logout(token)
+    fun logout() = liveData {
+        val response: Response<Map<String, String>> = userRepository.logout()
         if (response.isSuccessful) {
             emit(response.body())  // Emit logout success response
         } else {
