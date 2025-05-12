@@ -111,20 +111,25 @@ class CustomerFragmentRequest : Fragment(R.layout.customer_fragment_request) {
         btnSubmit.setOnClickListener {
             val sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
             val customerID = sharedPreferences.getLong("userID", -1L)
-            val token = "Bearer ${sharedPreferences.getString("auth_token", null)}"
 
-            if (customerID == -1L || token == "Bearer null"){
+            if (customerID == -1L) {
                 Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-
             val pickupChecked = cbPickup.isChecked
             val deliveryChecked = cbDelivery.isChecked
-            val feedsConChecked = cbFeedsCon.isChecked
+            val feedsConChecked = cbFeedsCon.isChecked // Reserved for future use?
 
             val selectedDate = btnDatePicker.text.toString()
 
+            // Prevent default text from being sent as a date
+            if ((pickupChecked || deliveryChecked) && selectedDate == "Pickup Date") {
+                Toast.makeText(requireContext(), "Please select a pickup date", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Calculate serviceID
             val serviceID = when {
                 pickupChecked && deliveryChecked -> 3L
                 pickupChecked -> 1L
@@ -132,17 +137,20 @@ class CustomerFragmentRequest : Fragment(R.layout.customer_fragment_request) {
                 else -> 0L
             }
 
-            val statusID = 1L
-            val courierID = 1L
+            if (serviceID == 0L) {
+                Toast.makeText(requireContext(), "Please select a service type", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             val selectedPaymentId = rgPayment.checkedRadioButtonId
             val paymentMethod = view.findViewById<RadioButton>(selectedPaymentId)?.text?.toString() ?: ""
 
             val request = CreateRequest(
+                ownerID = 2L,
                 customerID = customerID,
                 serviceID = serviceID,
-                statusID = statusID,
-                courierID = courierID,
+                statusID = 1L,
+                courierID = 1L, // temporary
                 pickupDate = if (pickupChecked) selectedDate else null,
                 deliveryDate = null,
                 sackQuantity = quantity,
@@ -151,7 +159,6 @@ class CustomerFragmentRequest : Fragment(R.layout.customer_fragment_request) {
             )
 
             requestViewModel.submitRequest(request)
-
         }
 
 

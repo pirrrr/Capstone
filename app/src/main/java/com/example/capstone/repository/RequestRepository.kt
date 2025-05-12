@@ -20,4 +20,9 @@ class RequestRepository (private val apiService: ApiService) {
     suspend fun getRequests(): Response<RequestResponse> {
         return apiService.getRequests()
     }
+
+    suspend fun getOwnerRequests(): Response<RequestResponse> {
+        return apiService.getOwnerRequests()
+    }
+
 }

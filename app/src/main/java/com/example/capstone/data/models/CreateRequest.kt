@@ -1,6 +1,7 @@
 package com.example.capstone.data.models
 
 data class CreateRequest(
+    val ownerID: Long,
     val customerID: Long,
     val serviceID: Long,
     val courierID: Long,

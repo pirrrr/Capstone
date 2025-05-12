@@ -27,6 +27,9 @@ interface ApiService {
     @GET("requests")
     suspend fun getRequests(): Response<RequestResponse>
 
+    @GET("owner/requests")
+    suspend fun getOwnerRequests(): Response<RequestResponse>
+
     @GET("profile")
     suspend fun getProfile(): Response<User>
 

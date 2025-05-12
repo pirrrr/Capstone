@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:padding="12dp"
+
+    android:radius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCustomerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer: John Doe"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSackQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sacks: 3" />
+
+        <TextView
+            android:id="@+id/tvServices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Services: Washing, Ironing" />
+
+        <TextView
+            android:id="@+id/tvSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule: 2025-05-14 10:00" />
+
+        <TextView
+            android:id="@+id/tvPaymentMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment: Gcash" />
+
+        <TextView
+            android:id="@+id/tvComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message: Please leave it outside." />
+
+        <TextView
+            android:id="@+id/tvSubmittedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submitted: 2025-05-12T14:30:00" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
