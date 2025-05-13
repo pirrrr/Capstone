@@ -10,5 +10,5 @@ data class CreateRequest(
     val deliveryDate: String?,
     val sackQuantity: Int,
     val comment: String?,
-    val paymentMethod: String?
+    val modeID: Long
 )

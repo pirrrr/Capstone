@@ -1,5 +1,6 @@
 package com.example.capstone.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,14 +29,20 @@ class RequestAdapter(private var requestList: List<Request>) :
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
         val request = requestList[position]
+
+        Log.d("RequestAdapter", "Request ID: ${request.requestID}")
+        Log.d("RequestAdapter", "Customer Name: ${request.customerName}")
+        Log.d("RequestAdapter", "Service Name: ${request.serviceName}")
+        Log.d("RequestAdapter", "Payment Method: ${request.paymentMethod}")
+        Log.d("RequestAdapter", "SubmittedAt: ${request.submittedAt}")
+
         holder.tvCustomerName.text = "Customer: ${request.customerName}"
         holder.tvSackQty.text = "Sacks: ${request.sackQuantity}"
-        val serviceList = request.selectedServices ?: emptyList()
-        holder.tvServices.text = "Services: ${serviceList.joinToString(", ")}"
-        holder.tvSchedule.text = "Schedule: ${request.pickupDate ?: "N/A"}"
+        holder.tvServices.text = "Services: ${request.serviceName}"
+        holder.tvSchedule.text = "Schedule: ${request.schedule}"
         holder.tvPaymentMethod.text = "Payment: ${request.paymentMethod}"
-        holder.tvComment.text = "Message: ${request.comment}"
-        holder.tvSubmittedAt.text = "Submitted: ${request.dateCreated}"
+        holder.tvComment.text = "Comment: ${request.comment}"
+        holder.tvSubmittedAt.text = "Submitted: ${request.submittedAt}"
     }
 
     override fun getItemCount(): Int = requestList.size

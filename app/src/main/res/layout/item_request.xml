@@ -17,43 +17,44 @@
             android:id="@+id/tvCustomerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Customer: John Doe"
+            android:text="Customer:"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvSackQty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sacks: 3" />
+            android:text="Sacks:" />
 
         <TextView
             android:id="@+id/tvServices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Services: Washing, Ironing" />
+            android:text="Services:" />
 
         <TextView
             android:id="@+id/tvSchedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Schedule: 2025-05-14 10:00" />
+            android:text="Schedule:" />
 
         <TextView
             android:id="@+id/tvPaymentMethod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Payment: Gcash" />
+            android:text="Payment:" />
 
         <TextView
             android:id="@+id/tvComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Message: Please leave it outside." />
+            android:text="Message:" />
 
         <TextView
             android:id="@+id/tvSubmittedAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submitted: 2025-05-12T14:30:00" />
+            android:text="Submitted:" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

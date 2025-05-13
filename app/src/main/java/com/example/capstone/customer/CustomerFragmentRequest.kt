@@ -39,6 +39,7 @@ class CustomerFragmentRequest : Fragment(R.layout.customer_fragment_request) {
 
     private var quantity = 1
     private val calendarView = Calendar.getInstance()
+    private val defaultdatetext = "Pick a schedule"
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -124,26 +125,38 @@ class CustomerFragmentRequest : Fragment(R.layout.customer_fragment_request) {
             val selectedDate = btnDatePicker.text.toString()
 
             // Prevent default text from being sent as a date
-            if ((pickupChecked || deliveryChecked) && selectedDate == "Pickup Date") {
+            if ((pickupChecked || deliveryChecked) && selectedDate == defaultdatetext) {
                 Toast.makeText(requireContext(), "Please select a pickup date", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             // Calculate serviceID
             val serviceID = when {
-                pickupChecked && deliveryChecked -> 3L
-                pickupChecked -> 1L
-                deliveryChecked -> 2L
-                else -> 0L
+                pickupChecked && deliveryChecked && feedsConChecked -> 1L
+                pickupChecked && deliveryChecked -> 5L
+                pickupChecked && feedsConChecked -> 6L
+                deliveryChecked && feedsConChecked ->7
+                pickupChecked -> 2L
+                deliveryChecked -> 3L
+                feedsConChecked -> 4L
+
+                else -> 8L
             }
 
-            if (serviceID == 0L) {
-                Toast.makeText(requireContext(), "Please select a service type", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+
+
 
             val selectedPaymentId = rgPayment.checkedRadioButtonId
-            val paymentMethod = view.findViewById<RadioButton>(selectedPaymentId)?.text?.toString() ?: ""
+            val paymentMethod = view.findViewById<RadioButton>(selectedPaymentId)?.text?.toString()
+
+            val modeID = when (paymentMethod?.lowercase()) {
+                "cash on delivery" -> 1L
+                "gcash" -> 2L
+                else -> {
+                    Toast.makeText(requireContext(), "Please select a valid payment method", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
 
             val request = CreateRequest(
                 ownerID = 2L,
@@ -155,7 +168,7 @@ class CustomerFragmentRequest : Fragment(R.layout.customer_fragment_request) {
                 deliveryDate = null,
                 sackQuantity = quantity,
                 comment = comment.text.toString(),
-                paymentMethod = paymentMethod
+                modeID = modeID
             )
 
             requestViewModel.submitRequest(request)
@@ -166,7 +179,7 @@ class CustomerFragmentRequest : Fragment(R.layout.customer_fragment_request) {
 
 
     private fun updateBtnText(calendar: Calendar){
-        val myFormat = "MM/dd/yyyy"
+        val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         btnDatePicker.setText(sdf.format(calendar.time))
 
